@@ -1,7 +1,12 @@
+import ToDoTodayPage from "../../pages/ToDoTodayPage/ToDoTodayPage";
 import "./App.css";
 
 function App() {
-  return <></>;
+  return (
+    <>
+      <ToDoTodayPage />
+    </>
+  );
 }
 
 export default App;
