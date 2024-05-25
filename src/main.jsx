@@ -7,6 +7,7 @@ import App from "./components/App/App.jsx";
 //import { store, persistor } from "./redux/store";
 import "modern-normalize";
 import "./index.css";
+import "./assets/fonts/CustomFonts.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
