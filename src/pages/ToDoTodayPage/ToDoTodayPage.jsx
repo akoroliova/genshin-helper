@@ -1,5 +1,5 @@
 import HeaderParagraph from "../../components/utilityParts/HeaderParagraph/HeaderParagraph";
-import SimpleInputForm from "../../components/utilityParts/forms/SimpleInputForm/SimpleInputForm";
+import SimpleInputForm from "../../components/utilityParts/forms/UncontrolledInput";
 import css from "./ToDoTodayPage.module.css";
 
 export default function ToDoToday() {
@@ -76,7 +76,7 @@ export default function ToDoToday() {
         <li>Parametric Transformer</li>
         <li>Event</li>
         <li>Test Run</li>
-        <li>purchase Welkin Pass</li>
+        <li>Purchase Welkin Pass</li>
         <li>Spend 375 Stardust for 5 Intertwined Fate</li>
         <li>Spend 34 Starglitter on a new character</li>
         <li></li>
