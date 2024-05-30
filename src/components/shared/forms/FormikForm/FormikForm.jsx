@@ -21,7 +21,6 @@ export default function FormikForm({ onAdd }) {
   const usernameId = useId();
 
   const handleSubmit = (values, actions) => {
-    // console.log("handleSubmit", values);
     onAdd(values);
     actions.resetForm();
   };

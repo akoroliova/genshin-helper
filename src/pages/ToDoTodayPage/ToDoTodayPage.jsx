@@ -1,5 +1,5 @@
-import HeaderParagraph from "../../components/utilityParts/HeaderParagraph/HeaderParagraph";
-import SimpleInputForm from "../../components/utilityParts/forms/UncontrolledInput";
+import HeaderParagraph from "../../components/shared/HeaderParagraph/HeaderParagraph";
+import SimpleInputForm from "../../components/shared/forms/UncontrolledInput";
 import css from "./ToDoTodayPage.module.css";
 
 export default function ToDoToday() {

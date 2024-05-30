@@ -3,13 +3,17 @@ import "./App.css";
 import initialTasks from "../../assets/initialTasks.json";
 import Filter from "../../pages/ToDoTodayPage/Filter/Filter";
 import TaskList from "../../pages/ToDoTodayPage/TaskList/TaskList";
-import UncontrolledInput from "../utilityParts/forms/UncontrolledInput";
-import ControlledInput from "../utilityParts/forms/ControlledInput";
-import SelectDropdown from "../utilityParts/forms/SelectDropdown";
-import MultipleDropdown from "../utilityParts/forms/MultipleDropdown";
-import FormikForm from "../utilityParts/forms/FormikForm";
+import UncontrolledInput from "../shared/forms/UncontrolledInput";
+import ControlledInput from "../shared/forms/ControlledInput";
+import SelectDropdown from "../shared/forms/SelectDropdown";
+import MultipleDropdown from "../shared/forms/MultipleDropdown";
+import FormikForm from "../shared/forms/FormikForm/FormikForm";
 
 function App() {
+  /////////////////////////////////////////////////////////////////
+  /**
+   * For task list
+   */
   const [tasks, setTasks] = useState(initialTasks);
   const addTask = (newTask) => {
     setTasks((prevTasks) => {
@@ -25,23 +29,28 @@ function App() {
   const visibleTasks = tasks.filter((task) =>
     task.text.toLowerCase().includes(filter.toLowerCase())
   );
+  /////////////////////////////////////////////////////////////////
 
+  /**
+   * For utils -> forms
+   */
   const [inputValue, setInputValue] = useState(13);
-
   const [ascLevel, setAscLevel] = useState("A1");
-
   const makeChoice = (newChoice) => {
     console.log("User has selected: ", newChoice);
   };
-
   const handleAddUser = (newUser) => {
     console.log("handleAddUser", newUser);
   };
+  /////////////////////////////////////////////////////////////////
+
+  /**
+   * For
+   */
 
   return (
     <>
       <div>
-        <h1>Forms with Formik</h1>
         <FormikForm onAdd={handleAddUser} />
       </div>
       <UncontrolledInput onAdd={addTask} />
