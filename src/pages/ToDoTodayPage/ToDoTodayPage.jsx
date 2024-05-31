@@ -1,15 +1,25 @@
 import HeaderParagraph from "../../components/shared/HeaderParagraph/HeaderParagraph";
-import SimpleInputForm from "../../components/shared/forms/UncontrolledInput";
+import UncontrolledInput from "../../components/shared/forms/UncontrolledInput";
+import Filter from "./Filter/Filter";
+import TaskList from "./TaskList/TaskList";
 import css from "./ToDoTodayPage.module.css";
 
-export default function ToDoToday() {
-  const headerParagraph =
-    "See your list of tasks, all in one place, in a descending priority order (which is subjective, of course). The most urgent are considered to be four daily commissions as they bring you a good amount of primogems, followed by ascension materials which are restrained to be farmed on specific days of week. Last but not least, you can add your own ToDo items with or without their individual timers";
+const headerParagraph =
+  "See your list of tasks, all in one place, in a descending priority order (which is subjective, of course). The most urgent are considered to be four daily commissions as they bring you a good amount of primogems, followed by ascension materials which are restrained to be farmed on specific days of week. Last but not least, you can add your own ToDo items with or without their individual timers";
 
+export default function ToDoTodayPage({
+  addTask,
+  filter,
+  setFilter,
+  visibleTasks,
+  deleteTask,
+}) {
   return (
     <>
       <h1>ToDo Today</h1>
       <HeaderParagraph text={headerParagraph} />
+
+      <hr />
 
       <h2 className={css.todoheader}>Dailies</h2>
       <p>
@@ -37,11 +47,10 @@ export default function ToDoToday() {
           в кінці злити resin, що залишається невикористаною, на кристали у
           коваля і на круту резину на крафт станції
         </li>
-        <li></li>
-        <li></li>
-        <li></li>
       </ul>
+
       <hr />
+
       <h2 className={css.todoheader}>Farm Today</h2>
       <p>
         These are the artifacts and materials you need for character/weapon
@@ -54,7 +63,9 @@ export default function ToDoToday() {
         <li>2</li>
         <li>3</li>
       </ul>
+
       <hr />
+
       <h2 className={css.todoheader}>Weekly</h2>
       <p>(until next Monday)</p>
       <ul>
@@ -64,25 +75,17 @@ export default function ToDoToday() {
         <li>
           battle pass weekly objectives (trial counts as a domain challenge!)
         </li>
-        <li></li>
-        <li></li>
-        <li></li>
       </ul>
+
       <hr />
+
       <h2 className={css.todoheader}>Manual ToDos</h2>
       <p>(can be with or without individual timers)</p>
-      <SimpleInputForm />
-      <ul>
-        <li>Parametric Transformer</li>
-        <li>Event</li>
-        <li>Test Run</li>
-        <li>Purchase Welkin Pass</li>
-        <li>Spend 375 Stardust for 5 Intertwined Fate</li>
-        <li>Spend 34 Starglitter on a new character</li>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul>
+      <UncontrolledInput onAdd={addTask} />
+      <hr />
+      <Filter value={filter} onFilter={setFilter} />
+      <hr />
+      <TaskList items={visibleTasks} onDelete={deleteTask} />
     </>
   );
 }

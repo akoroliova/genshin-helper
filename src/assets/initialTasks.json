@@ -1,5 +1,9 @@
 [
   { "id": "1", "text": "Parametric Transformer" },
   { "id": "2", "text": "Event" },
-  { "id": "3", "text": "Test Run" }
+  { "id": "3", "text": "Test Run" },
+  { "id": "4", "text": "Purchase Welkin Pass" },
+  { "id": "5", "text": "Spend 375 Stardust for 5 Intertwined Fate" },
+  { "id": "6", "text": "Spend 34 Starglitter on a new character" },
+  { "id": "7", "text": "Crimson Wish" }
 ]

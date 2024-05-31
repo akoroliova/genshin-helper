@@ -1,13 +1,12 @@
 import { useState } from "react";
-import "./App.css";
+import { Route, Routes } from "react-router-dom";
+import Layout from "../shared/Layout/Layout";
+import HomePage from "../../pages/HomePage/HomePage";
+import ToDoTodayPage from "../../pages/ToDoTodayPage/ToDoTodayPage";
+import NotFoundPage from "../../pages/NotFoundPage/NotFoundPage";
 import initialTasks from "../../assets/initialTasks.json";
-import Filter from "../../pages/ToDoTodayPage/Filter/Filter";
-import TaskList from "../../pages/ToDoTodayPage/TaskList/TaskList";
-import UncontrolledInput from "../shared/forms/UncontrolledInput";
-import ControlledInput from "../shared/forms/ControlledInput";
-import SelectDropdown from "../shared/forms/SelectDropdown";
-import MultipleDropdown from "../shared/forms/MultipleDropdown";
-import FormikForm from "../shared/forms/FormikForm/FormikForm";
+import CharBuilderPage from "../../pages/CharBuilderPage/CharBuilderPage";
+import "./App.css";
 
 function App() {
   /////////////////////////////////////////////////////////////////
@@ -31,37 +30,38 @@ function App() {
   );
   /////////////////////////////////////////////////////////////////
 
-  /**
-   * For utils -> forms
-   */
-  const [inputValue, setInputValue] = useState(13);
-  const [ascLevel, setAscLevel] = useState("A1");
-  const makeChoice = (newChoice) => {
-    console.log("User has selected: ", newChoice);
-  };
-  const handleAddUser = (newUser) => {
-    console.log("handleAddUser", newUser);
-  };
-  /////////////////////////////////////////////////////////////////
-
-  /**
-   * For
-   */
-
   return (
     <>
-      <div>
-        <FormikForm onAdd={handleAddUser} />
-      </div>
-      <UncontrolledInput onAdd={addTask} />
-      <Filter value={filter} onFilter={setFilter} />
-      <TaskList items={visibleTasks} onDelete={deleteTask} />
-      <hr />
-      <ControlledInput value={inputValue} onType={setInputValue} />
-      <hr />
-      <SelectDropdown value={ascLevel} onChangeLevel={setAscLevel} />
-      <hr />
-      <MultipleDropdown onChoice={makeChoice} />
+      <Layout>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <HomePage
+                addTask={addTask}
+                filter={filter}
+                setFilter={setFilter}
+                visibleTasks={visibleTasks}
+                deleteTask={deleteTask}
+              />
+            }
+          />
+          <Route path="/charbuilder" element={<CharBuilderPage />} />
+          <Route
+            path="/tasks"
+            element={
+              <ToDoTodayPage
+                addTask={addTask}
+                filter={filter}
+                setFilter={setFilter}
+                visibleTasks={visibleTasks}
+                deleteTask={deleteTask}
+              />
+            }
+          />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </Layout>
     </>
   );
 }
