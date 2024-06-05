@@ -1,3 +1,5 @@
+import { useState } from "react";
+import initialTasks from "../../assets/initialTasks.json";
 import HeaderParagraph from "../../components/shared/HeaderParagraph/HeaderParagraph";
 import UncontrolledInput from "../../components/shared/forms/UncontrolledInput";
 import Filter from "./Filter/Filter";
@@ -7,13 +9,27 @@ import css from "./ToDoTodayPage.module.css";
 const headerParagraph =
   "See your list of tasks, all in one place, in a descending priority order (which is subjective, of course). The most urgent are considered to be four daily commissions as they bring you a good amount of primogems, followed by ascension materials which are restrained to be farmed on specific days of week. Last but not least, you can add your own ToDo items with or without their individual timers";
 
-export default function ToDoTodayPage({
-  addTask,
-  filter,
-  setFilter,
-  visibleTasks,
-  deleteTask,
-}) {
+export default function ToDoTodayPage() {
+  /////////////////////////////////////////////////////////////////
+  /**
+   * For task list
+   */
+  const [tasks, setTasks] = useState(initialTasks);
+  const addTask = (newTask) => {
+    setTasks((prevTasks) => {
+      return [...prevTasks, newTask];
+    });
+  };
+  const deleteTask = (taskId) => {
+    setTasks((prevTasks) => {
+      return prevTasks.filter((task) => task.id !== taskId);
+    });
+  };
+  const [filter, setFilter] = useState("");
+  const visibleTasks = tasks.filter((task) =>
+    task.text.toLowerCase().includes(filter.toLowerCase())
+  );
+  /////////////////////////////////////////////////////////////////
   return (
     <>
       <h1>ToDo Today</h1>
