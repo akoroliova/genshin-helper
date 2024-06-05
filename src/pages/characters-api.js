@@ -2,8 +2,8 @@ import axios from "axios";
 
 axios.defaults.baseURL = "https://genshin.jmp.blue";
 
-export const getCharacterIdsList = async () => {
-  const response = await axios.get("/characters");
+export const getCharacters = async () => {
+  const response = await axios.get("/characters/all");
   return response.data;
 };
 

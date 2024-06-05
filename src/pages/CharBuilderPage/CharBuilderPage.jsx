@@ -1,7 +1,7 @@
 import HeaderParagraph from "../../components/shared/HeaderParagraph/HeaderParagraph";
 import CharPicker from "./CharPicker/CharPicker";
 import { useEffect, useState } from "react";
-import { getCharacterIdsList } from "../characters-api";
+import { getCharacters } from "../characters-api";
 
 const headerParagraph =
   "Pattern of successive upgrading is Weapon -> Talents -> Artifacts -> Ascension -> Level";
@@ -12,10 +12,10 @@ export default function CharBuilderPage() {
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    async function fetchCharacterIdsList() {
+    async function fetchCharacters() {
       try {
         setLoading(true);
-        const data = await getCharacterIdsList();
+        const data = await getCharacters();
         setCharacters(data);
       } catch (error) {
         setError(true);
@@ -23,7 +23,7 @@ export default function CharBuilderPage() {
         setLoading(false);
       }
     }
-    fetchCharacterIdsList();
+    fetchCharacters();
   }, []);
 
   return (
@@ -31,7 +31,7 @@ export default function CharBuilderPage() {
       <h1>Character Builder</h1>
       <HeaderParagraph text={headerParagraph} />
       {loading && <b>Loading characters...</b>}
-      {error && <b>Error loading characters, please reload.</b>}
+      {error && <b>Error loading characters, please refresh.</b>}
       {characters.length > 0 && <CharPicker characters={characters} />}
       <button>Go to Farm Dashboard</button>
     </div>

@@ -5,9 +5,9 @@ export default function CharPicker({ characters }) {
   return (
     <div>
       <ul className={css.list}>
-        {characters.map((id) => (
-          <li key={id}>
-            <CharacterCard characterId={id} />
+        {characters.map((character) => (
+          <li key={character.id}>
+            <CharacterCard character={character} />
           </li>
         ))}
       </ul>
