@@ -13,6 +13,8 @@ export const getCharacterById = async (characterId) => {
 };
 
 export const getCharacterIcon = async (characterId) => {
-  const response = await axios.get(`/characters/${characterId}/icon`);
+  const response = await axios.get(`/characters/${characterId}/icon`, {
+    responseType: "blob", // Вказуємо, що відповідь буде у форматі blob
+  });
   return response.data;
 };
