@@ -18,3 +18,10 @@ export const getCharacterIcon = async (characterId) => {
   });
   return response.data;
 };
+
+export const getCharacterIconBig = async (characterId) => {
+  const response = await axios.get(`/characters/${characterId}/icon-big`, {
+    responseType: "blob", // Вказуємо, що відповідь буде у форматі blob
+  });
+  return response.data;
+};

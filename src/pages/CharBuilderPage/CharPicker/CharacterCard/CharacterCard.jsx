@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getCharacterIcon } from "../../../characters-api";
+import { getCharacterIcon, getCharacterIconBig } from "../../../characters-api";
 import placeholder from "../../../../assets/placeholder.png"; // Placeholder image
 
 export default function CharacterCard({
@@ -19,8 +19,19 @@ export default function CharacterCard({
         setError(false); // Скидаємо помилку, якщо іконка завантажилась успішно
       } catch (error) {
         if (error.response && error.response.status === 404) {
-          setCharacterIcon(placeholder); // Використовуємо placeholder, якщо помилка 404
-          setError(false); // Не вважаємо це помилкою, просто показуємо placeholder
+          try {
+            const blobBig = await getCharacterIconBig(id);
+            const imageUrlBig = URL.createObjectURL(blobBig); // Створюємо URL для запасної іконки
+            setCharacterIcon(imageUrlBig); // Встановлюємо URL як адресу для запасної іконки
+            setError(false); // Скидаємо помилку, якщо запасна іконка завантажилась успішно
+          } catch (secondError) {
+            if (secondError.response && secondError.response.status === 404) {
+              setCharacterIcon(placeholder); // Використовуємо placeholder, якщо обидва запити повертають 404
+              setError(false); // Не вважаємо це помилкою, просто показуємо placeholder
+            } else {
+              setError(true);
+            }
+          }
         } else {
           setError(true);
         }
