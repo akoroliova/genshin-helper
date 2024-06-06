@@ -1,7 +1,7 @@
 import HeaderParagraph from "../../components/shared/HeaderParagraph/HeaderParagraph";
 import CharPicker from "./CharPicker/CharPicker";
 import { useEffect, useState } from "react";
-import { getCharacters } from "../characters-api";
+import { getCharacterIcon, getCharacters } from "../characters-api";
 
 const headerParagraph =
   "Pattern of successive upgrading is Weapon -> Talents -> Artifacts -> Ascension -> Level";
@@ -16,7 +16,16 @@ export default function CharBuilderPage() {
       try {
         setLoading(true);
         const data = await getCharacters();
-        setCharacters(data);
+
+        // Fetch character icons from another request
+        const charactersWithIcons = await Promise.all(
+          data.map(async (character) => {
+            const iconData = await getCharacterIcon(character.id);
+            return { ...character, icon: iconData };
+          })
+        );
+
+        setCharacters(charactersWithIcons);
       } catch (error) {
         setError(true);
       } finally {
